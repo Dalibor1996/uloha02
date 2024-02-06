@@ -1,7 +1,8 @@
 import pickle
 zoznam_krajin = {}
 def pridaj_krajinu(country, capital):
-    """Add a country and its capital to the dictionary."""
+    country = str(input("Pridajte krajinu"))
+    capital = str(input("Pridaj capital"))
     zoznam_krajin[country] = capital
     return f"krajina {country} bola pridana s hlavnym mestom {capital}"
 
@@ -12,11 +13,14 @@ def vymaz_krajinu(country):
     else:
         return f"krajina {country} sa nenachadza v zozname krajin"
 
-def uprav_krajinu(country, capital, new_capital):
-    if country in zoznam_krajin:
-        new_capital = str(input("Napiste nove hlavne mesto"))
-        zoznam_krajin[country] = new_capital
-    return f"krajine {country} bolo zmenene hlavne mesto z {capital} na {new_capital}"
+def uprav_krajinu(country, new_capital, zoznam_krajin):
+     if country in zoznam_krajin:
+            new_capital = str(input("Napiste nove hlavne mesto: "))
+            zoznam_krajin[country] = new_capital
+            print(f"Hlavne mesto pre {country} bolo zmenene na {new_capital}.")
+     else:
+            print(f"Krajina {country} nie je v zozname.")
+
 
 def najst_krajinu(country):
     if country in zoznam_krajin:
@@ -46,10 +50,8 @@ def display_menu():
 def perform_operation(choice):
     if choice == 1:
         pridaj_krajinu()
-        print("Queue is empty." if queue.is_empty() else "Queue is not empty.")
     elif choice == 2:
         vymaz_krajinu()
-        print("Queue is full." if queue.is_full() else "Queue is not full.")
     elif choice == 3:
         uprav_krajinu()
 
@@ -66,6 +68,6 @@ def main():
     q = display_menu()
     while True:
        choice = display_menu()
-       perform_operation(choice, q)
+       perform_operation(choice)
 
 main()
